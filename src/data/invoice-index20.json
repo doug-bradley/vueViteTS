@@ -1,0 +1,282 @@
+[
+    {
+        "InvoiceID": 30534,
+        "InvoiceRef": "INV-1",
+        "InvoiceDate": "2020-02-24T00:00:00Z",
+        "PostingDate": "2020-02-24T00:00:00Z",
+        "CurrentStateName": "Closed",
+        "Supplier": {
+            "Name": "Ace o' Clubs"
+        },
+        "Employee": {
+            "FirstName": "Financial Assistant C",
+            "LastName": "User"
+        }
+    },
+    {
+        "InvoiceID": 30535,
+        "InvoiceRef": "INV5556",
+        "InvoiceDate": "2020-02-24T00:00:00Z",
+        "PostingDate": "2020-02-24T00:00:00Z",
+        "CurrentStateName": "Closed",
+        "Supplier": {
+            "Name": "Ace Chemicals"
+        },
+        "Employee": {
+            "FirstName": "Financial Assistant B",
+            "LastName": "User"
+        }
+    },
+    {
+        "InvoiceID": 30536,
+        "InvoiceRef": "INV-987",
+        "InvoiceDate": "2020-02-24T00:00:00Z",
+        "PostingDate": "2020-02-24T00:00:00Z",
+        "CurrentStateName": "Closed",
+        "Supplier": {
+            "Name": "A. Datum Corporation"
+        },
+        "Employee": {
+            "FirstName": "Financial Assistant A",
+            "LastName": "User"
+        }
+    },
+    {
+        "InvoiceID": 30537,
+        "InvoiceRef": "INV-151",
+        "InvoiceDate": "2020-02-28T00:00:00Z",
+        "PostingDate": "2020-02-28T00:00:00Z",
+        "CurrentStateName": "Closed",
+        "Supplier": {
+            "Name": "Ace o' Clubs"
+        },
+        "Employee": {
+            "FirstName": "Financial Assistant C",
+            "LastName": "User"
+        }
+    },
+    {
+        "InvoiceID": 30538,
+        "InvoiceRef": "Inv7POB-2",
+        "InvoiceDate": "2020-02-24T00:00:00Z",
+        "PostingDate": "2020-02-24T00:00:00Z",
+        "CurrentStateName": "Closed",
+        "Supplier": {
+            "Name": "Ace Chemicals"
+        },
+        "Employee": {
+            "FirstName": "Financial Assistant B",
+            "LastName": "User"
+        }
+    },
+    {
+        "InvoiceID": 30539,
+        "InvoiceRef": "Inv8POB-3",
+        "InvoiceDate": "2020-02-24T00:00:00Z",
+        "PostingDate": "2020-02-24T00:00:00Z",
+        "CurrentStateName": "Closed",
+        "Supplier": {
+            "Name": "Adipose Industries"
+        },
+        "Employee": {
+            "FirstName": "Financial Assistant B",
+            "LastName": "User"
+        }
+    },
+    {
+        "InvoiceID": 30540,
+        "InvoiceRef": "INV-Feb25CompB",
+        "InvoiceDate": "2020-02-25T00:00:00Z",
+        "PostingDate": "2020-02-25T00:00:00Z",
+        "CurrentStateName": "Closing",
+        "Supplier": {
+            "Name": "Ace Chemicals"
+        },
+        "Employee": {
+            "FirstName": "Financial Assistant B",
+            "LastName": "User"
+        }
+    },
+    {
+        "InvoiceID": 30541,
+        "InvoiceRef": "INV- 25 Feb FRAXA",
+        "InvoiceDate": "2020-02-28T00:00:00Z",
+        "PostingDate": "2020-02-28T00:00:00Z",
+        "CurrentStateName": "Closed",
+        "Supplier": {
+            "Name": "A. Datum Corporation"
+        },
+        "Employee": {
+            "FirstName": "Financial Assistant A",
+            "LastName": "User"
+        }
+    },
+    {
+        "InvoiceID": 30542,
+        "InvoiceRef": "INV-POC3 Feb 25 FRAXC",
+        "InvoiceDate": "2020-02-28T00:00:00Z",
+        "PostingDate": "2020-02-28T00:00:00Z",
+        "CurrentStateName": "Closed",
+        "Supplier": {
+            "Name": "LexCorp"
+        },
+        "Employee": {
+            "FirstName": "Financial Assistant C",
+            "LastName": "User"
+        }
+    },
+    {
+        "InvoiceID": 30543,
+        "InvoiceRef": "INV-POB-5",
+        "InvoiceDate": "2020-02-28T00:00:00Z",
+        "PostingDate": "2020-02-28T00:00:00Z",
+        "CurrentStateName": "Closed",
+        "Supplier": {
+            "Name": "Oscorp"
+        },
+        "Employee": {
+            "FirstName": "Financial Assistant B",
+            "LastName": "User"
+        }
+    },
+    {
+        "InvoiceID": 30544,
+        "InvoiceRef": "INV-POA-3",
+        "InvoiceDate": "2020-02-28T00:00:00Z",
+        "PostingDate": "2020-02-28T00:00:00Z",
+        "CurrentStateName": "Closed",
+        "Supplier": {
+            "Name": "Contoso"
+        },
+        "Employee": {
+            "FirstName": "Financial Assistant A",
+            "LastName": "User"
+        }
+    },
+    {
+        "InvoiceID": 30545,
+        "InvoiceRef": "Inv",
+        "InvoiceDate": "2020-02-25T00:00:00Z",
+        "PostingDate": "2020-02-25T00:00:00Z",
+        "CurrentStateName": "Create",
+        "Supplier": {
+            "Name": "Ace Chemicals"
+        },
+        "Employee": {
+            "FirstName": "Financial Assistant B",
+            "LastName": "User"
+        }
+    },
+    {
+        "InvoiceID": 30547,
+        "InvoiceRef": "Inv- POA- 4",
+        "InvoiceDate": "2020-02-25T00:00:00Z",
+        "PostingDate": "2020-02-25T00:00:00Z",
+        "CurrentStateName": "Create",
+        "Supplier": {
+            "Name": "GameCenter CX"
+        },
+        "Employee": {
+            "FirstName": "Financial Assistant A",
+            "LastName": "User"
+        }
+    },
+    {
+        "InvoiceID": 30548,
+        "InvoiceRef": "Inv- POA- 5",
+        "InvoiceDate": "2020-02-25T00:00:00Z",
+        "PostingDate": "2020-02-25T00:00:00Z",
+        "CurrentStateName": "Cost allocation approval",
+        "Supplier": {
+            "Name": "GameCenter CX"
+        },
+        "Employee": {
+            "FirstName": "Financial Assistant A",
+            "LastName": "User"
+        }
+    },
+    {
+        "InvoiceID": 30549,
+        "InvoiceRef": "Inv_POB-6",
+        "InvoiceDate": "2020-02-25T00:00:00Z",
+        "PostingDate": "2020-02-25T00:00:00Z",
+        "CurrentStateName": "Cost allocation approval",
+        "Supplier": {
+            "Name": "Clothes Over Bro's"
+        },
+        "Employee": {
+            "FirstName": "Financial Assistant B",
+            "LastName": "User"
+        }
+    },
+    {
+        "InvoiceID": 30550,
+        "InvoiceRef": "Inv- POB- 7",
+        "InvoiceDate": "2020-03-04T00:00:00Z",
+        "PostingDate": "2020-03-04T00:00:00Z",
+        "CurrentStateName": "Closed",
+        "Supplier": {
+            "Name": "Management & Correction Corporation"
+        },
+        "Employee": {
+            "FirstName": "Financial Assistant B",
+            "LastName": "User"
+        }
+    },
+    {
+        "InvoiceID": 30551,
+        "InvoiceRef": "Inv_POB8",
+        "InvoiceDate": "2020-02-26T00:00:00Z",
+        "PostingDate": "2020-02-26T00:00:00Z",
+        "CurrentStateName": "Closed",
+        "Supplier": {
+            "Name": "Alchemax"
+        },
+        "Employee": {
+            "FirstName": "Financial Assistant B",
+            "LastName": "User"
+        }
+    },
+    {
+        "InvoiceID": 30552,
+        "InvoiceRef": "INV-31-B9",
+        "InvoiceDate": "2020-02-28T00:00:00Z",
+        "PostingDate": "2020-02-28T00:00:00Z",
+        "CurrentStateName": "Closed",
+        "Supplier": {
+            "Name": "Ace Chemicals"
+        },
+        "Employee": {
+            "FirstName": "Financial Assistant B",
+            "LastName": "User"
+        }
+    },
+    {
+        "InvoiceID": 30553,
+        "InvoiceRef": "INV-32-C4",
+        "InvoiceDate": "2020-02-26T00:00:00Z",
+        "PostingDate": "2020-02-26T00:00:00Z",
+        "CurrentStateName": "Closed",
+        "Supplier": {
+            "Name": "Ace o' Clubs"
+        },
+        "Employee": {
+            "FirstName": "Financial Assistant C",
+            "LastName": "User"
+        }
+    },
+    {
+        "InvoiceID": 30554,
+        "InvoiceRef": "INV-33-A6",
+        "InvoiceDate": "2020-02-26T00:00:00Z",
+        "PostingDate": "2020-02-26T00:00:00Z",
+        "CurrentStateName": "Closed",
+        "Supplier": {
+            "Name": "A. Datum Corporation"
+        },
+        "Employee": {
+            "FirstName": "Financial Assistant A",
+            "LastName": "User"
+        }
+    }
+]
