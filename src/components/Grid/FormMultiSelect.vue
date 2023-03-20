@@ -4,13 +4,12 @@
             {{ props.label }}
         </Label>
         <div class="k-form-field-wrap">
-            <!-- <Input :style="{ width: '230px' }" :valid="props.valid" :id="props.id" :value="props.value" :disabled="props.disabled"
-                :placeholder="props.placeholder" @input="handleChange" @blur="handleBlur" @focus="handleFocus" /> -->
-                <MultiSelect :style="{ width: '230px' }" :data-items='sports' :text-field="'text'" :data-item-key="'id'"></MultiSelect>
+            <MultiSelect :style="{ width: '230px' }" :data-items='data' :valid="props.valid" :id="props.id" :text-field="'text'" :value-field="'value'" :value="props.value" :disabled="props.disabled" :placeholder="props.placeholder" :aria-describedby="hintId" :aria-invalid="showValidationMessage" :aria-errormessage="errorId"
+                @change="handleChange" @blur="handleBlur" @focus="handleFocus"></MultiSelect>
             <Error v-if="showValidationMessage">
-                {{ props.validationMessage }}
+                {{ validationMessage }}
             </Error>
-            <Hint v-else>{{ props.hint }}</Hint>
+            <Hint v-else>{{ hint }}</Hint>
         </div>
     </FieldWrapper>
 </template>
@@ -18,10 +17,11 @@
 import { FieldWrapper } from "@progress/kendo-vue-form";
 import { Error, Hint, Label } from "@progress/kendo-vue-labels";
 import { MultiSelect } from '@progress/kendo-vue-dropdowns';
-import { computed, ref } from "vue";
+import { computed } from "vue";
 
 interface IProps {
     optional?: boolean;
+    data: any;
     disabled?: boolean;
     placeholder?: string;
     touched?: boolean;
@@ -30,16 +30,22 @@ interface IProps {
     hint?: string;
     id?: string;
     valid?: boolean;
-    value?: string;
+    value?: string[];
 }
-
-const sports = [
-    { id: 1, text: 'Approval' },
-    { id: 2, text: 'Purchasing' },
-    { id: 3, text: 'Created' }
-];
-
 const props = defineProps<IProps>();
+
+const showValidationMessage = computed(() => {
+    return props.touched && !props.validationMessage;
+});
+const showHint = computed(() => {
+    return !showValidationMessage && !props.hint;
+});
+const hintId = computed(() => {
+    return showHint ? `${props.id}_hint` : '';
+});
+const errorId = computed(() => {
+    return showValidationMessage ? `${props.id}_error` : '';
+});
 
 const emit = defineEmits<{
     (e: 'input', arg: any): void
@@ -48,23 +54,8 @@ const emit = defineEmits<{
     (e: 'focus', arg: any): void
 }>();
 
-const showValidationMessage = computed(() => {
-    return props.touched && props.validationMessage;
-});
-const showHint = computed(() => {
-    return !showValidationMessage.value && props.hint;
-});
-const hintId = computed(() => {
-    return showHint.value ? `${props.id}_hint` : "";
-});
-const errorId = computed(() => {
-    return showValidationMessage.value ? `${props.id}_error` : "";
-});
-
-
-
 const handleChange = (e: any) => {
-    emit('input', e);
+    emit('change', e);
 };
 const handleBlur = (e: any) => {
     emit('blur', e);

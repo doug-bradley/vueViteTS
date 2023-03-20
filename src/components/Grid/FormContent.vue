@@ -4,48 +4,87 @@
             <!-- <legend class="k-form-legend">Please fill in the fields:</legend> -->
 
             <div class="mb-3">
-                <Field :id="'refNumber'" :name="'refNumber'" :label="'Reference #'" :component="'myTemplate'">
+                <form-field :id="'refNumber'" :name="'refNumber'" :label="'Reference #'" :component="'myTemplate'">
                     <template v-slot:myTemplate="{ props }">
                         <FormInput v-bind="props" @change="props.onChange" @blur="props.onBlur" @focus="props.onFocus" />
                     </template>
-                </Field>
+                </form-field>
             </div>
 
-            <div class="mb-3">
-                <Field :name="'invoiceTitle'" :component="'myTemplate'" :label="'Title'">
+            <!-- <div class="mb-3">
+                <form-field :name="'invoiceTitle'" :component="'myTemplate'" :label="'Title'">
                     <template v-slot:myTemplate="{ props }">
                         <FormInput v-bind="props" @change="props.onChange" @blur="props.onBlur" @focus="props.onFocus" />
                     </template>
-                </Field>
+                </form-field>
+            </div> -->
+
+            <div class="mb-3">
+                <form-field :id="'status'" :name="'status'" :component="'myTemplate'" :label="'Status'"  >
+                    <template v-slot:myTemplate="{ props }">
+                        <FormMultiSelect :data="statusList" v-bind="props" @change="props.onChange" @blur="props.onBlur"
+                            @focus="props.onFocus" />
+                    </template>
+                </form-field>
+            </div>
+
+
+
+            <div class="mb-3">
+                <form-field :id="'phoneNumber'" :name="'phoneNumber'" :label="'Phone Number'" :mask="'(999) 000-0000'"
+                    :hint="'Hint: Your active phone number.'" :component="'myTemplate'" :validator="phoneValidator">
+                    <template v-slot:myTemplate="{ props }">
+                        <FormMaskedTextBox v-bind="props" @change="props.onChange" @blur="props.onBlur"
+                            @focus="props.onFocus"></FormMaskedTextBox>
+                    </template>
+                </form-field>
             </div>
 
             <div class="mb-3">
-                <Field :name="'status'" :type="'status'" :component="'myTemplate'" :label="'Status'"
-                    :validator="emailValidator">
+                <form-field :id="'postedDate'" 
+                            :name="'postedDate'" 
+                            :label="'Posted date'"
+                            :component="'myTemplate'"
+                            :validator="arrivalDateValidator" 
+                            :style="{ width: '90%', 'margin-right': '18px' }">
                     <template v-slot:myTemplate="{ props }">
-                        <FormMultiSelect v-bind="props" @change="props.onChange" @blur="props.onBlur" @focus="props.onFocus" />
+                        <FormDatePicker v-bind="props" @change="props.onChange" @blur="props.onBlur" @focus="props.onFocus" />
                     </template>
-                </Field>
+                </form-field>
+            </div>
+
+
+            <div class="mb-3">
+                <form-field :id="'createdDate'" 
+                    :name="'createdDate'" 
+                    :label="'Created Date'"
+                    :component="'myTemplate'"
+                    :style="{ width: '90%', 'margin-right': '18px' }">
+                    <template v-slot:myTemplate="{ props }">
+                        <FormDateRangePicker v-bind="props" @change="props.onChange" @blur="props.onBlur" @focus="props.onFocus" />
+                    </template>
+                </form-field>
             </div>
 
             <!-- Created On -->
             <!-- Modified On -->
             <!-- Request Owner -->
-            
-            <div class="mb-3">
-                <field :name="'requestOwner'" :component="'myTemplate'" :label="'Request owner'">
+
+            <!-- <div class="mb-3">
+                <form-field :name="'requestOwner'" :component="'myTemplate'" :label="'Request owner'">
                     <template v-slot:myTemplate="{ props }">
                         <FormInput v-bind="props" @change="props.onChange" @blur="props.onBlur" @focus="props.onFocus" />
                     </template>
-                </field>
-            </div>
+                </form-field>
+            </div> -->
             <!-- Has Attachments -->
             <div class="mb-3">
-                <Field :name="'hasAttachments'" :component="'myTemplate'" :label="'Has attachments'">
+                <form-field :id="'hasAttachments'" :name="'hasAttachments'" :component="'myTemplate'"
+                    :label="'Has attachments'">
                     <template v-slot:myTemplate="{ props }">
                         <FormCheckbox v-bind="props" @change="props.onChange" @blur="props.onBlur" @focus="props.onFocus" />
                     </template>
-                </Field>
+                </form-field>
             </div>
 
 
@@ -53,10 +92,8 @@
 
 
         <div class="k-form-buttons">
-            <Button type="submit" :disabled="!kendoForm.allowSubmit">
-                Submit
-            </Button>
-            <Button type="button" @click="clear">Clear </Button>
+            <Button type="submit" :disabled="!kendoForm.allowSubmit">Submit</Button>
+            <Button type="button" @click="kendoForm.onFormreset">Clear </Button>
         </div>
     </form-element>
 </template>
@@ -66,30 +103,50 @@ import { inject, ref } from "vue";
 import FormInput from "./FormInput.vue";
 import FormMultiSelect from "./FormMultiSelect.vue";
 import FormCheckbox from "./FormCheckbox.vue";
-import { Field, FormElement } from "@progress/kendo-vue-form";
+import FormMaskedTextBox from "./FormMaskedTextBox.vue";
+import FormDatePicker from "./FormDatePicker.vue";
+import FormDateRangePicker from "./FormDateRangePicker.vue";
+import { Field as formField, FormElement as formElement } from "@progress/kendo-vue-form";
+import { FormRenderProps } from "@progress/kendo-vue-form";
 import { Button } from "@progress/kendo-vue-buttons";
 import { GridColumnProps } from "@progress/kendo-vue-grid";
+import {
+    termsValidator,
+    emailValidator,
+    nameValidator,
+    phoneValidator,
+    guestsValidator,
+    nightsValidator,
+    arrivalDateValidator,
+} from "./validators";
 
 interface IProps {
     invoiceColumns: GridColumnProps[];
 }
 
+const statusList = [
+    { text: "Open", value: 1 },
+    { text: "Closed", value: 2 },
+    { text: "Pending", value: 3 },
+    { text: "In Progress", value: 4 },
+    { text: "On Hold", value: 5 },
+];
 const props2 = defineProps<IProps>();
-const firstName = ref('doug')
 
-console.log('FormContent', props2.invoiceColumns)
-const emailRegex = new RegExp(/\S+@\S+\.\S+/);
-const emailValidator = (value: string) => emailRegex.test(value) ? "" : "Please enter a valid email.";
 
-const kendoForm: any = inject('kendoForm');
+const kendoForm = inject<FormRenderProps>('kendoForm', {} as FormRenderProps);
 
 const handleSubmit = (dataItem: any) => {
     alert(JSON.stringify(dataItem, null, 2));
 };
 
 const clear = () => {
-    console.log('clear', kendoForm)
-    kendoForm.onFormReset();
+    if (kendoForm !== undefined)
+        kendoForm.onFormreset?.();
+};
+
+const change = (e: any) => {
+    console.log(e);
 };
 
 

@@ -4,21 +4,36 @@
             {{ props.label }}
         </Label>
         <div class="k-form-field-wrap my-4">
-            <!-- <Input :style="{ width: '230px' }" :valid="props.valid" :id="props.id" :value="props.value" :disabled="props.disabled"
-                :placeholder="props.placeholder" @input="handleChange" @blur="handleBlur" @focus="handleFocus" /> -->
-            <Checkbox :style="{ width: '230px' }" :label="'Yes'" :valid="props.valid" :id="props.id" :value="props.value" :disabled="props.disabled" />      
-            </div>
-            
-        <div class="k-form-field-wrap my-4">      
-            <Checkbox :style="{ width: '230px' }" :label="'No'" :valid="props.valid" :id="props.id" :value="props.value" :disabled="props.disabled" />
+            <Checkbox
+                :valid="props.valid"
+                :id="props.id"
+                :label="'Yes'"
+                @change="handleChangeYes"
+                @blur="handleBlur"
+                @focus="handleFocus" />
+        </div>
+
+        <div class="k-form-field-wrap my-4">
+            <Checkbox
+                :valid="props.valid"
+                :id="props.id"
+                :label="'No'"    
+                @change="handleChangeNo"
+                @blur="handleBlur"
+                @focus="handleFocus" />
         </div>
     </FieldWrapper>
+    <pre>
+        {{ props.value }}
+    </pre>
 </template>
 <script setup lang="ts">
+import { ref, defineProps, defineEmits } from "vue";
 import { FieldWrapper } from "@progress/kendo-vue-form";
 import { Error, Hint, Label } from "@progress/kendo-vue-labels";
 import { Checkbox } from "@progress/kendo-vue-inputs";
 import { computed } from "vue";
+import { watch } from "fs";
 
 interface IProps {
     optional?: boolean;
@@ -30,7 +45,7 @@ interface IProps {
     hint?: string;
     id?: string;
     valid?: boolean;
-    value?: string;
+    value: { yes: boolean, no: boolean, unassigned: boolean}
 }
 
 const props = defineProps<IProps>();
@@ -57,7 +72,10 @@ const errorId = computed(() => {
 
 
 
-const handleChange = (e: any) => {
+const handleChangeYes = (e: any) => {
+    emit('input', e);
+};
+const handleChangeNo = (e: any) => {
     emit('input', e);
 };
 const handleBlur = (e: any) => {

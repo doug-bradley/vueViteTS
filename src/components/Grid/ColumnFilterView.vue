@@ -16,6 +16,7 @@ interface IProps {
 const props = defineProps<IProps>();
 
 const handleSubmit = (dataItem: any) => {
+    console.log(dataItem)
     alert(JSON.stringify(dataItem, null, 2));
 }
 </script>
