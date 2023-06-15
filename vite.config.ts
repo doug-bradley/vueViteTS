@@ -11,14 +11,25 @@ export default ({ mode }) => {
     server: {
       proxy: {
         '/api': {
-          target: process.env.VITE_API_URL,
+          target: 'https://engage.spendmanagement.com/engage/v4/api/',
           changeOrigin: true,
-          headers: { "Ocp-Apim-Subscription-Key": process.env.VITE_SUBSCRIPTION_KEY },
+          headers: { "Ocp-Apim-Subscription-Key": '004428350acc4f2aa94d735c5126d741' },
           secure: false,
           rewrite: (path) => path.replace(/^\/api/, '')
         },
       },
     },
+    // server: {
+    //   proxy: {
+    //     '/api': {
+    //       target: process.env.VITE_API_URL,
+    //       changeOrigin: true,
+    //       headers: { "Ocp-Apim-Subscription-Key": process.env.VITE_SUBSCRIPTION_KEY },
+    //       secure: false,
+    //       rewrite: (path) => path.replace(/^\/api/, '')
+    //     },
+    //   },
+    // },
     css: {
       preprocessorOptions: {
         scss: {

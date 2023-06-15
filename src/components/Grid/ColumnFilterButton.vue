@@ -1,12 +1,14 @@
 <template>
-    <Button class="grid-button" ref="filterButton" :icon="'filter'" @click="show = !show">Filter</Button>
+    <div ref="filterButton">
+    <div @click="show = !show">Filter</div>
     <Popup :anchor="'filterButton'" :show="show" :popup-class="'popup-content'">
         <ColumnFilterView :invoiceColumns="props.invoiceColumns" />
     </Popup>
+    </div>
 </template>
 
 <script setup lang="ts">
-import { Button } from '@progress/kendo-vue-buttons';
+// import { Button } from '@progress/kendo-vue-buttons';
 import { GridColumnProps } from '@progress/kendo-vue-grid';
 import { Popup } from '@progress/kendo-vue-popup';
 import ColumnFilterView from './ColumnFilterView.vue';

@@ -1,3 +1,12 @@
+// Tailwind css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+    font-family: 'Open Sans', sans-serif;
+}
+
 //$primary: #ff69b4;
 $kendo-color-primary: #008897;
 
