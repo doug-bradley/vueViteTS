@@ -1,12 +1,10 @@
 <template>
+    <div @click="onClick">
     <DropDownButton
-    class="grid-button"
         :items="invoiceColumns" 
         :text="'Customize'" 
-        :icon="'cog'" 
         :opened="opened" 
-        :item-render="'itemRender'"
-        @click="onClick" 
+        :item-render="'itemRender'" 
         @itemclick="onItemClick">
 
         <template v-slot:itemRender="{ props }">
@@ -16,6 +14,7 @@
             </div>
         </template>
     </DropDownButton>
+    </div>
 </template>
 
 <script setup lang="ts">
@@ -49,3 +48,28 @@ const onItemClick = (e: any) => {
 };
 
 </script>
+
+<style scoped>
+.k-dropdown-button >>> button.k-button:hover {
+    background-color: transparent!important;
+    border: transparent!important;
+    color: #60A5FA!important;
+}
+.k-dropdown-button >>> button.k-button:focus {
+    box-shadow: none!important;
+}
+.k-dropdown-button >>> .k-button-solid-base{
+    background-image: none!important;
+    font-size: 16px!important
+}
+.k-dropdown-button >>> .k-button-md{
+    padding: 0!important;
+}
+.k-menu-group .k-item:focus>.k-link,
+.k-menu-group .k-item.k-focus>.k-link,
+.k-menu.k-context-menu .k-item:focus>.k-link,
+.k-menu.k-context-menu .k-item.k-focus>.k-link {
+    box-shadow: none!important;
+}
+
+</style>
