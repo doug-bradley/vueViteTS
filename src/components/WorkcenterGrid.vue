@@ -1,5 +1,6 @@
 <template>
-    <div>
+    <Loader v-if="loading" />
+    <div id="workcenter">
         <div class="flex flex-row items-center justify-between py-5">
             <h2 class="text-[32px] font-light">{{ props.title }}</h2>
             <div class="flex flex-row text-teal">
@@ -120,6 +121,7 @@ import { useEngage } from '../composables/engageComposable';
 import { useGridOptions } from './Grid/GridOptions';
 
 import { Invoice } from '../models/data-contracts';
+import Loader from '../Utility/Loader.vue';
 
 const props = defineProps({
     title: {

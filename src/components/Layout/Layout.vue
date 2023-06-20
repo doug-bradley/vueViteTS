@@ -1,29 +1,23 @@
 <template>
-    <div class="flex flex-col w-full h-screen overflow-y-scroll">
+    <div id="components-layout-layout" class="flex flex-col w-full h-screen overflow-y-scroll">
         <Nav></Nav>
         <div class="border flex flex-row h-full">
-            <div class="bg-primary h-full">
-                <div class="w-[194px]">
-                    <!-- custom dropdown button -->
-                    <div class="btn-dropdown">
-                        <div class="flex flex-row items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="w-6 h-6 mr-[8px]">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            New request
-                        </div>
-                        <div class="flex flex-col justify-center ml-2 pl-3 border-l-[1px] border-white border-opacity-50">
-                            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9 1L5 5L1 1" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <Layout>
+                <template v-slot:dropdown>
+                    <DropdownButton />
+                </template>
+                <template v-slot:primary-menu>
+                    <PrimaryMenu @dropdownPrimaryL1="dropdownDataHandler" :dropdownData="dropdownData" />
+                </template>
+                <template v-slot:analtyics-menu>
+                    <AnalyticsMenu />
+                </template>
+                <template v-slot:management-menu>
+                    <ManagementMenu @dropdownManagementL1="dropdownDataHandler" @dropdownManagementL2="dropdownDataHandler" :dropdownData="dropdownData" />
+                </template>
+            </Layout>
 
-            <div class="p-10">
+            <div class="relative p-10 pt-4">
                 <slot></slot> <!-- WorkcenterGrid goes in here -->
             </div>
         </div>
@@ -31,12 +25,47 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
 import Nav from '../Nav/Nav.vue';
+import DropdownButton from '../SideMenu/DropdownButton.vue';
+import Layout from '../SideMenu/Layout.vue';
+import PrimaryMenu from '../SideMenu/PrimaryMenu.vue';
+import AnalyticsMenu from '../SideMenu/AnalyticsMenu.vue';
+import ManagementMenu from '../SideMenu/ManagementMenu.vue';
 
+let dropdownData = ref({
+    primary: {
+        l1: null,
+    },
+    management: {
+        l1: null,
+        l2: null,
+    },
+});
+
+const dropdownDataHandler = (data: any) => {
+    // console.log(data)
+    if(data.section === 'management'){
+        if(data.level1){
+            dropdownData.value.management.l1 = data.level1;
+        }
+        if(data.level2){
+            dropdownData.value.management.l2 = data.level2;
+        }
+        // reset other dropdowns
+        dropdownData.value.primary.l1 = null;
+    }
+    if(data.section === 'primary'){
+        if(data.level1){
+            dropdownData.value.primary.l1 = data.level1;
+        }
+        // reset other dropdowns
+        dropdownData.value.management.l1 = null;
+        dropdownData.value.management.l2 = null;
+    }
+    console.log(dropdownData.value);
+}
 </script>
 
 <style scoped>
-.btn-dropdown{
-    @apply flex flex-row justify-between mx-auto bg-secondary text-white rounded-md px-2 w-[159px] h-[40px] mt-8 text-[13px] cursor-pointer shadow-none transition-shadow hover:shadow-lg;
-}
 </style>
