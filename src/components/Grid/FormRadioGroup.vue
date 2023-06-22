@@ -4,27 +4,10 @@
             {{ props.label }}
         </Label>
 
-        <div class="k-form-field-wrap my-4">
-            <Checkbox
-                :valid="props.valid"
-                :id="props.id"
-                :label="'Yes'"
-                @change="handleChangeYes"
-                @blur="handleBlur"
-                @focus="handleFocus" />
-        </div>
+        <RadioGroup :data-items="dataItems" @change="handleChange" />
 
-        <div class="k-form-field-wrap my-4">
-            <Checkbox
-                :valid="props.valid"
-                :id="props.id"
-                :label="'No'"    
-                @change="handleChangeNo"
-                @blur="handleBlur"
-                @focus="handleFocus" />
-        </div>
     </FieldWrapper>
-    <!-- Debug output for valid checkbox selection -->
+    <!-- Debug output for valid radios selection -->
     <!-- <pre>
         {{ props.value }}
     </pre> -->
@@ -33,7 +16,7 @@
 import { ref, defineProps, defineEmits } from "vue";
 import { FieldWrapper } from "@progress/kendo-vue-form";
 import { Error, Hint, Label } from "@progress/kendo-vue-labels";
-import { Checkbox } from "@progress/kendo-vue-inputs";
+import { RadioGroup } from "@progress/kendo-vue-inputs";
 import { computed } from "vue";
 import { watch } from "fs";
 
@@ -77,6 +60,11 @@ const errorId = computed(() => {
     return showValidationMessage.value ? `${props.id}_error` : "";
 });
 
+
+const handleChange = (e: any) => {
+    console.log(e);
+    emit('input', e);
+};
 const handleChangeYes = (e: any) => {
     emit('input', e);
 };

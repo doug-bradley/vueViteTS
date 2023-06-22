@@ -1,7 +1,8 @@
 <template>
-    <div id="components-layout-layout" class="flex flex-col w-full h-screen overflow-y-scroll">
+    <div id="components-layout-layout" class="relative flex flex-col w-full h-screen overflow-y-scroll">
         <Nav></Nav>
-        <div class="border flex flex-row h-full">
+        <div class="border flex flex-row">
+            <div class="relative z-[1]">
             <Layout>
                 <template v-slot:dropdown>
                     <DropdownButton />
@@ -16,16 +17,18 @@
                     <ManagementMenu @dropdownManagementL1="dropdownDataHandler" @dropdownManagementL2="dropdownDataHandler" :dropdownData="dropdownData" />
                 </template>
             </Layout>
+            </div>
 
-            <div class="relative p-10 pt-4">
+            <div class="relative z-0 p-10 pt-4 h-screen overflow-y-scroll w-full">
                 <slot></slot> <!-- WorkcenterGrid goes in here -->
             </div>
+
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted, onUnmounted, nextTick } from 'vue';
 import Nav from '../Nav/Nav.vue';
 import DropdownButton from '../SideMenu/DropdownButton.vue';
 import Layout from '../SideMenu/Layout.vue';
@@ -65,6 +68,7 @@ const dropdownDataHandler = (data: any) => {
     }
     console.log(dropdownData.value);
 }
+
 </script>
 
 <style scoped>

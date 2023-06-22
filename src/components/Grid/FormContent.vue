@@ -1,5 +1,5 @@
 <template>
-    <form-element class="pa-10" :style="{ width: '350px' }">
+    <form-element class="p-[30px]" :style="{ width: '350px' }">
         <fieldset class="k-form-fieldset">
             <!-- <legend class="k-form-legend">Please fill in the fields:</legend> -->
 
@@ -82,7 +82,7 @@
                 <form-field :id="'hasAttachments'" :name="'hasAttachments'" :component="'myTemplate'"
                     :label="'Has attachments'">
                     <template v-slot:myTemplate="{ props }">
-                        <FormCheckbox v-bind="props" @change="props.onChange" @blur="props.onBlur" @focus="props.onFocus" />
+                        <FormRadioGroup v-bind="props" @change="props.onChange" @blur="props.onBlur" @focus="props.onFocus" />
                     </template>
                 </form-field>
             </div>
@@ -91,9 +91,9 @@
         </fieldset>
 
 
-        <div class="k-form-buttons">
-            <Button type="submit" :disabled="!kendoForm.allowSubmit">Submit</Button>
-            <Button type="button" @click="kendoForm.onFormreset">Clear </Button>
+        <div class="k-form-buttons flex flex-row-reverse">
+            <Button :theme-color="'primary'" type="submit" :disabled="!kendoForm.allowSubmit">Apply</Button>
+            <Button :theme-color="'primary'" :fill-mode="'outline'" type="button" @click="kendoForm.onFormreset">Cancel </Button>
         </div>
     </form-element>
 </template>
@@ -103,6 +103,7 @@ import { inject, ref } from "vue";
 import FormInput from "./FormInput.vue";
 import FormMultiSelect from "./FormMultiSelect.vue";
 import FormCheckbox from "./FormCheckbox.vue";
+import FormRadioGroup from "./FormRadioGroup.vue";
 import FormMaskedTextBox from "./FormMaskedTextBox.vue";
 import FormDatePicker from "./FormDatePicker.vue";
 import FormDateRangePicker from "./FormDateRangePicker.vue";
@@ -151,3 +152,16 @@ const change = (e: any) => {
 
 
 </script>
+
+<style scoped>
+:deep(.k-form-field){
+    margin-top: 0!important;
+    margin-bottom: 20px!important;
+}
+:deep(.k-input-md .k-input-inner){
+    @apply p-2;
+}
+:deep(button.k-button){
+    @apply py-3 px-4;
+}
+</style>

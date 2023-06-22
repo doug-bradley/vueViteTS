@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-row justify-center pt-8">
+    <div class="relative z-10 flex flex-row justify-center pt-8">
         <a href="/Request/Create/1" class="btn-dropdown" @click="newRequestHandler()">
             <div class="flex flex-row items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -15,8 +15,7 @@
             <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M9 1L5 5L1 1" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
-            <div v-if="showNewDrop">
-                <ul class="absolute z-10 top-0 left-0 bg-white text-primary rounded-sm w-[159px] mt-8 text-[12px]">
+                <ul v-if="showNewDrop" class="absolute z-20 top-0 left-0 bg-white text-primary rounded-sm w-[159px] mt-8 text-[12px]">
                     <li v-for="item in newDropItems" :key="item.id"
                         class="flex flex-row items-center justify-between h-full">
                         <a :href="item.url + '?id=' + item.id"
@@ -24,7 +23,6 @@
                                 item.title }}</a>
                     </li>
                 </ul>
-            </div>
         </div>
     </div>
 </template>

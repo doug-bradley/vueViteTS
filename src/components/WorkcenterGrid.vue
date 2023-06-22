@@ -3,7 +3,7 @@
     <div id="workcenter">
         <div class="flex flex-row items-center justify-between py-5">
             <h2 class="text-[32px] font-light">{{ props.title }}</h2>
-            <div class="flex flex-row text-teal">
+            <div v-if="props.toolbar" class="flex flex-row text-teal">
                 <div
                     class="flex flex-row items-center ml-[40px] text-[16px] cursor-pointer transition-colors hover:text-blue-400">
                     <!-- <span class="k-icon k-i-plus-outline mr-[8px]"></span> -->
@@ -48,12 +48,13 @@
                 </div>
             </div>
         </div>
+
         <div class="card">
             <div class="ma-2">
                 <Grid :data-items="invoiceGrid" :columns="invoiceColumns" :skip="skip" :take="take" :total="count"
                     :pageable="pageableOptions" @pagechange="pageChangeHandler" :sortable="sortable" :sort="sort"
                     @sortchange="sortChangeHandler" :resizable="true" :reorderable="true" @columnreorder="columnReorder"
-                    :loader="loader" class="border rounded-md">
+                    :loader="loader" class="rounded-md">
                     <template v-slot:dateTemplate="{ props, listeners }">
                         <td>{{ dateFormatter.format(props.dataItem[props.field]) }}</td>
                     </template>
@@ -126,6 +127,10 @@ import Loader from '../Utility/Loader.vue';
 const props = defineProps({
     title: {
         type: String
+    },
+    toolbar: {
+        type: Boolean,
+        default: true
     }
 });
 
@@ -137,24 +142,24 @@ const dateFormatter = useDateFormatter('en-US');
 const odataURl = '$count=true&$select=InvoiceID,InvoiceRef,InvoiceDate,PostingDate,CurrentStateName&$expand=Supplier($select=Name),Employee($select=FirstName,LastName)';
 
 const invoiceColumns = ref<GridColumnProps[]>([
-    { field: 'InvoiceID', type: 'number', title: 'Invoice #', width: '100px', hidden: false },
+    { field: 'InvoiceID', type: 'number', title: 'Invoice #', hidden: false },
 
-    { field: 'InvoiceRef', type: 'string', title: 'Title', width: '200px', cell: 'titleTemplate', hidden: false },
-    { field: 'CurrentStateName', type: 'string', title: 'Status', width: '100px', cell: 'statusTemplate', hidden: false },
+    { field: 'InvoiceRef', type: 'string', title: 'Title', cell: 'titleTemplate', hidden: false },
+    { field: 'CurrentStateName', type: 'string', title: 'Status', cell: 'statusTemplate', hidden: false },
 
-    { field: 'InvoiceDate', type: 'date', title: 'Invoice date', width: '125px', cell: 'dateTemplate', hidden: false },
-    { field: 'PostingDate', type: 'date', title: 'Posted date', width: '125px', cell: 'dateTemplate', hidden: false },
+    { field: 'InvoiceDate', type: 'date', title: 'Invoice date', cell: 'dateTemplate', hidden: false },
+    { field: 'PostingDate', type: 'date', title: 'Posted date', cell: 'dateTemplate', hidden: false },
 
-    { field: 'Supplier.Name', type: 'string', title: 'Vendor', width: '150px', hidden: false },
+    { field: 'Supplier.Name', type: 'string', title: 'Vendor', hidden: false },
 
     // { field: 'Approvers', type: 'string', title: 'Current approver', width: '150px', hidden: false },
     // { field: 'ApprovalGroups', type: 'string', title: 'Approval group', width: '200px', hidden: false },
 
-    { field: 'Employee.FirstName', type: 'string', title: 'Financial assistant', width: '150px', hidden: false },
-    { field: 'TotalCostDisplay', type: 'string', title: 'Total', width: '100px', hidden: false },
+    { field: 'Employee.FirstName', type: 'string', title: 'Financial assistant', hidden: false },
+    { field: 'TotalCostDisplay', type: 'string', title: 'Total', hidden: false },
 
-    { field: 'Attachments', type: 'string', title: 'Attachments', width: '50px', cell: 'attachmentTemplate', hidden: false },
-    { field: 'Action', type: 'string', title: 'Action', width: '50px', cell: 'actionTemplate', hidden: false }
+    { field: 'Attachments', type: 'string', title: 'Attachments', cell: 'attachmentTemplate', hidden: false },
+    { field: 'Action', type: 'string', title: 'Action', cell: 'actionTemplate', hidden: false }
 ]);
 
 const { loader,

@@ -1,20 +1,16 @@
+<template>
+  <Layout>
+    <!-- <FraxionGrid title="Invoices" toolbar="true" /> -->
+    <Review />
+  </Layout>
+</template>
+
 <script setup lang="ts">
 import '@progress/kendo-theme-default/dist/all.scss';
 import FraxionGrid from './components/WorkcenterGrid.vue'
-import Nav from './components/Nav/Nav.vue'
 import Layout from './components/Layout/Layout.vue'
-
+import Review from './components/Request/Review.vue';
 </script>
-
-<template>
-  <Layout>
-    <FraxionGrid title="Invoices" />
-  </Layout>
-  <!-- <div class="mx-auto max-w-[1300px] w-10/12">
-    <Nav></Nav>
-    
-  </div> -->
-</template>
 
 <style>
 body {

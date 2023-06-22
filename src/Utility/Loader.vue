@@ -1,10 +1,5 @@
 <template name="loader">
     <div class="loader">
-        <!-- <div class="loader__spinner">
-            <div class="loader__spinner--bounce"></div>
-            <div class="loader__spinner--bounce"></div>
-            <div class="loader__spinner--bounce"></div>
-        </div> -->
         <div class="donut-1"></div>
         <div class="donut-2"></div>
     </div>

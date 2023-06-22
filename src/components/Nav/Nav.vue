@@ -1,5 +1,5 @@
 <template>
-    <nav class="flex flex-row justify-between items-center bg-white p-6 border-b-[1px] border-[#dadada]">
+    <nav class="flex flex-row justify-between items-center bg-white p-6 border-b-[1px] border-[#dadada] transition-all" :class="{'isFixed' : props.isFixed}" :key="props.navKeyIncrement">
         <div class="flex flex-row items-center gap-14">
             <svg width="122" height="36" viewBox="0 0 122 36" fill="none" xmlns="http://www.w3.org/2000/svg"
                 xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -43,7 +43,33 @@
 </template>
 
 <script setup lang="ts">
+import { defineProps } from 'vue';
+
+const props = defineProps({
+    isFixed: {
+        type: Boolean,
+        required: true
+    },
+    navKeyIncrement: {
+        type: Number,
+        required: true
+    }
+})
 </script>
 
 
-<style scoped></style>
+<style scoped>
+/* .isFixed {
+  @apply fixed top-0 left-0 right-0 z-10;
+  animation: slideIn 0.5s ease-in;
+} */
+/* 
+@keyframes slideIn {
+  0% {
+    transform: translateY(-95px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+} */
+</style>

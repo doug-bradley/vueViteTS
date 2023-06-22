@@ -48,30 +48,35 @@ const menuItems = ref([
     { id: 2, title: 'Approve', icon: icons[1].icon, link: '/approve', children: null },
     {
         id: 3, title: 'Requests', icon: icons[2].icon, link: '/Request', children: [
-            { id: 1, title: 'New request', link: '/Request/New' },
-            { id: 2, title: 'My requests', link: '/Request/My' },
-            { id: 3, title: 'All requests', link: '/Request/All' },
+            { id: 1, title: 'Purchase', link: '/Request/Index/1' },
+            { id: 2, title: 'Expense', link: '/Request/Index/10' },
+            { id: 3, title: 'Leave', link: '/Request/Index/20' },
+            { id: 4, title: 'Travel', link: '/Request/Index/30' },
+            { id: 5, title: 'Capex purchase', link: '/Request/Index/40' },
+            { id: 6, title: 'Time capture', link: '/Request/Index/50' },
+            { id: 7, title: 'Cash advance', link: '/Request/Index/60' },
+            { id: 8, title: 'Pending items', link: '/RequestItemPool' },
         ]
     },
     {
         id: 4, title: 'Quotes', icon: icons[3].icon, link: '/Quotes', children: [
-            { id: 1, title: 'New quote', link: '/Quotes/New' },
-            { id: 2, title: 'My quotes', link: '/Quotes/My' },
-            { id: 3, title: 'All quotes', link: '/Quotes/All' },
+            { id: 1, title: 'Create', link: '/Quote/Index/71' },
+            { id: 2, title: 'Quoting', link: '/Quote/Index/70' },
+            { id: 3, title: 'Quoted', link: '/Quote/Index/79' },
         ]
     },
     {
         id: 5, title: 'Purchase orders', icon: icons[4].icon, link: '/PO', children: [
-            { id: 1, title: 'New PO', link: '/PO/New' },
-            { id: 2, title: 'My PO', link: '/PO/My' },
-            { id: 3, title: 'All PO', link: '/PO/All' },
+            { id: 1, title: 'Create', link: '/PO/CreatePOIndex' },
+            { id: 2, title: 'Pending', link: '/PO/Index/55' },
+            { id: 3, title: 'Open', link: '/PO/Index/56' },
+            { id: 4, title: 'Revising', link: '/PO/Index/58' },
         ]
     },
     {
         id: 6, title: 'Payments', icon: icons[5].icon, link: '/payments', children: [
-            { id: 1, title: 'New payment', link: '/payments/New' },
-            { id: 2, title: 'My payments', link: '/payments/My' },
-            { id: 3, title: 'All payments', link: '/payments/All' },
+            { id: 1, title: 'Proforma', link: '/ProformaInvoice' },
+            { id: 2, title: 'Invoice', link: '/Invoice' },
         ]
     },
 ])
