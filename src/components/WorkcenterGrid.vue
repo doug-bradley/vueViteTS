@@ -1,7 +1,7 @@
 <template>
     <Loader v-if="loading" />
     <div id="workcenter">
-        <div class="flex flex-row items-center justify-between py-5">
+        <div class="flex flex-row items-center justify-between pb-5">
             <h2 class="text-[32px] font-light">{{ props.title }}</h2>
             <div v-if="props.toolbar" class="flex flex-row text-teal">
                 <div

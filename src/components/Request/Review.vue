@@ -1,6 +1,6 @@
 <template>
     <div id="request-review" class="flex flex-row gap-4 w-full">
-        <div class="w-9/12 border-t-[1px] border-gray-200">
+        <div class="w-9/12">
             <div class="text-teal flex flex-row items-center gap-1 text-base font-semibold my-[14px]">
                 <Icon :icon="iconArrowLeft" class="w-4 h-4" />
                 Back

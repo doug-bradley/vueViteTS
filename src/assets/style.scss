@@ -29,3 +29,7 @@ div.card {
     border-color: #DADADA;
     background-color: white;
 }
+
+.btn{
+    @apply px-4 py-3;
+}
