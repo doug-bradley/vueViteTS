@@ -53,7 +53,6 @@ const onItemClick = (e: any) => {
 .k-dropdown-button >>> button.k-button:hover {
     background-color: transparent!important;
     border: transparent!important;
-    color: #60A5FA!important;
 }
 .k-dropdown-button >>> button.k-button:focus {
     box-shadow: none!important;
