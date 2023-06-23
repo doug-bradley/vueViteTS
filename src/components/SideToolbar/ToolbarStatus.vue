@@ -5,35 +5,44 @@
         <div id="statusHolder" class="relative flex flex-row justify-between" :class="statusClass">
             <span class="dot dot-created" :class="{
                 'current' : props.data.status === 'created',
-                'completed': ['approval', 'purchasing', 'closing', 'closed'].includes(props.data.status)}">
+                'completed': ['approval', 'purchasing', 'closing', 'closed'].includes(props.data.status)}"
+                @click="props.data.details && props.data.status === 'created' ? detailHandler() : null">
                 <div v-if="props.data.details && props.data.status === 'created'" class="relative cursor-pointer" :class="{'is-rotated' : show}">
-                    <Icon ref="detailIcon" :icon="iconChevronDown" @click="detailHandler" />
+                    <Icon ref="detailIcon" :icon="iconChevronDown" @click.stop="detailHandler" />
                 </div>
             </span>
+
             <span class="dot dot-approval" :class="{
                 'current' : props.data.status === 'approval',
-                'completed': ['purchasing', 'closing', 'closed'].includes(props.data.status)}">
+                'completed': ['purchasing', 'closing', 'closed'].includes(props.data.status)}"
+                @click="props.data.details && props.data.status === 'approval' ? detailHandler() : null">
                 <div v-if="props.data.details && props.data.status === 'approval'" class="relative cursor-pointer" :class="{'is-rotated' : show}">
-                    <Icon ref="detailIcon" :icon="iconChevronDown" @click="detailHandler" />
+                    <Icon ref="detailIcon" :icon="iconChevronDown" @click.stop="detailHandler" />
                 </div>
             </span>
+
             <span class="dot dot-purchasing flex flex-col items-center" :class="{
                 'current' : props.data.status === 'purchasing',
-                'completed': ['closing', 'closed'].includes(props.data.status)}">
+                'completed': ['closing', 'closed'].includes(props.data.status)}"
+                @click="props.data.details && props.data.status === 'purchasing' ? detailHandler() : null">
                 <div v-if="props.data.details && props.data.status === 'purchasing'" class="relative cursor-pointer" :class="{'is-rotated' : show}">
-                    <Icon ref="detailIcon" :icon="iconChevronDown" @click="detailHandler" />
+                    <Icon ref="detailIcon" :icon="iconChevronDown" @click.stop="detailHandler" />
                 </div>
             </span>
+
             <span class="dot dot-closing" :class="{
                 'current' : props.data.status === 'closing',
-                'completed': ['closed'].includes(props.data.status)}">
+                'completed': ['closed'].includes(props.data.status)}"
+                @click="props.data.details && props.data.status === 'closing' ? detailHandler() : null">
                 <div v-if="props.data.details && props.data.status === 'closing'" class="relative cursor-pointer" :class="{'is-rotated' : show}">
-                    <Icon ref="detailIcon" :icon="iconChevronDown" @click="detailHandler" />
+                    <Icon ref="detailIcon" :icon="iconChevronDown" @click.stop="detailHandler" />
                 </div>
             </span>
-            <span class="dot dot-closed" :class="{'current' : props.data.status === 'closed'}">
+
+            <span class="dot dot-closed" :class="{'current' : props.data.status === 'closed'}"
+            @click="props.data.details && props.data.status === 'closed' ? detailHandler() : null">
                 <div v-if="props.data.details && props.data.status === 'closed'" class="relative cursor-pointer" :class="{'is-rotated' : show}">
-                    <Icon ref="detailIcon" :icon="iconChevronDown" @click="detailHandler" />
+                    <Icon ref="detailIcon" :icon="iconChevronDown" @click.stop="detailHandler" />
                 </div>
             </span>
         </div>

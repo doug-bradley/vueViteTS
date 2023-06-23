@@ -34,7 +34,7 @@ const iconArrowLeft = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewB
 
 const statusData = ref({
     title: 'Status',
-    status: 'purchasing',
+    status: 'closed',
     details: {
         total: 10000,
         PO: 12345,
