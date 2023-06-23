@@ -1,8 +1,8 @@
 <template>
     <div id="components-layout-layout" class="relative flex flex-col w-full h-screen overflow-y-scroll">
         <Nav></Nav>
-        <div class="border flex flex-row">
-            <div class="relative z-[1]">
+        <div class="flex flex-row">
+            <div class="bg-primary relative z-[1]">
             <Layout>
                 <template v-slot:dropdown>
                     <DropdownButton />
@@ -19,7 +19,7 @@
             </Layout>
             </div>
 
-            <div class="relative z-0 p-10 pt-4 h-screen overflow-y-scroll w-full">
+            <div class="relative z-0 p-10 pt-4 _h-screen w-full">
                 <slot></slot> <!-- WorkcenterGrid goes in here -->
             </div>
 

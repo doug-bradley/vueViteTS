@@ -1,6 +1,6 @@
 <template>
-    <div class="card px-5 pt-5 pb-10">
-        <h3 class="text-sm font-normal pb-5">{{ props.data.title }}</h3>
+    <div class="card px-5 pt-5 pb-10 font-light">
+        <h3 class="text-sm pb-5">{{ props.data.title }}</h3>
 
         <div id="statusHolder" class="relative flex flex-row justify-between" :class="statusClass">
             <span class="dot dot-created" :class="{
@@ -41,11 +41,11 @@
 
     <!--  -->
     <Popup :anchor="'detailIcon'" :show="show" :popup-class="'popup-content'">
-        <div class="card p-5 w-52">
-            <div class="text-sm font-normal">Total</div>
-            <div class="text-2xl font-light mb-5">${{ props.data.details.total }}</div>
+        <div class="card p-5 w-52 font-light">
+            <div class="text-sm">Total</div>
+            <div class="text-2xl mb-5">${{ props.data.details.total }}</div>
 
-            <div class="text-sm font-normal">
+            <div class="text-sm">
                 <div class="flex flex-row justify-between mb-5">
                     <div class="w-4/12">PO #</div>
                     <div class="w-7/12">{{ props.data.details.PO }}</div>
@@ -69,7 +69,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, defineProps, onMounted } from 'vue';
+import { ref, computed, defineProps } from 'vue';
 import { Popup } from '@progress/kendo-vue-popup';
 import Icon from '../../Utility/Icon.vue';
 
@@ -95,10 +95,6 @@ const statusClass = computed(() => {
     'quarter-3': props.data.status === 'closing',
     'quarter-4': props.data.status === 'closed',
   };
-});
-
-onMounted(() => {
-    console.log(props.data);
 });
 </script>
 

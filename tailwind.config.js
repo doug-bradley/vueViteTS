@@ -9,6 +9,7 @@ export default {
       colors: {
         'teal': '#008897',
         'light-grey': '#F5F5F5',
+        'medium-grey': '#888888',
         'primary': '#383E54',
         'secondary': '#03C3D8',
         'accent-1': '#286090',

@@ -1,14 +1,9 @@
 <template>
-    <div id="toolbar-actions" class="flex flex-row gap-2 justify-end items-center mt-14">
+    <div id="toolbar-actions" class="flex flex-row gap-2 justify-end items-center mt-16">
         <div
             class="flex flex-row items-center ml-[40px] text-[16px] cursor-pointer text-teal"
             @click="newHandler">
             <Icon :icon="plusIcon" class="mr-[8px]" />
-            <!-- <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                stroke="currentColor" class="w-6 h-6 mr-[8px]">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg> -->
             New
         </div>
 

@@ -12,8 +12,8 @@
             <ToolbarActions />
             <ToolbarStatus :data="statusData" />
             <ToolbarDescription :data="descriptionData" />
-            <ToolbarDocuments />
-            <ToolbarActivity />
+            <ToolbarDocuments :data="documentsData" />
+            <ToolbarActivity :data="activityData" />
         </div>
     </div>
 </template>
@@ -82,6 +82,46 @@ const descriptionData = ref({
             link: '#'
         },
     }
+})
+
+const documentsData = ref({
+    title: 'Documents',
+    details: [
+        {
+            id: 1,
+            file: 'Screenshot 1.pdf',
+            link: '#'
+        },
+        {
+            id: 2,
+            file: 'Screenshot 2.jpg',
+            link: '#'
+        }
+    ]
+})
+
+const activityData = ref({
+    title: 'Activity timeline',
+    details: [
+        {
+            id: 1,
+            status: 'approval',
+            user: 'Prathima Suvarna',
+            date: '2023-07-02',
+        },
+        {
+            id: 2,
+            status: 'approval',
+            user: 'Peet Kuger',
+            date: '2023-07-03',
+        },
+        {
+            id: 3,
+            status: 'create',
+            user: 'Celeste Visagie',
+            date: '2023-07-01',
+        }
+    ]
 })
 
 </script>

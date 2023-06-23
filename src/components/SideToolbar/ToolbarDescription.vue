@@ -1,6 +1,6 @@
 <template>
-    <div class="card px-5 pt-5 pb-10 text-sm">
-        <h3 class="text-sm font-normal pb-4 mb-5 border-b-light-grey border-b-[1px]">{{ props.data.title }}</h3>
+    <div class="card p-5 text-sm font-light">
+        <h3 class="text-sm pb-4 mb-5 border-b-light-grey border-b-[1px]">{{ props.data.title }}</h3>
 
         <div class="mb-5 flex flex-row">
             <div class="w-[130px]">Reference #</div>
@@ -31,7 +31,7 @@
             </div>
         </div>
 
-        <div class="mb-5 flex flex-row">
+        <div class="flex flex-row">
             <div class="w-[130px]">Budget impact</div>
             <div v-if="props.data.details.budgetImpact.link">
                 <span class="text-teal font-semibold cursor-pointer" @click="budgetImpactViewHandler">View</span>
@@ -44,7 +44,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, onMounted } from 'vue';
+import { defineProps } from 'vue';
 
 const props = defineProps({
     data: {
@@ -65,9 +65,6 @@ const budgetImpactViewHandler = () => {
     console.log('View budget impact');
 }
 
-onMounted(() => {
-    console.log(props.data);
-});
 </script>
 
 <style scoped></style>
