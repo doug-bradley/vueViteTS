@@ -3,7 +3,7 @@
         <h3 class="text-sm mb-5">{{ props.data.title }}</h3>
 
 
-        <div v-for="(item, index) in props.data.details" :key="item.id" :class="['py-5 border border-x-transparent border-b-transparent border-t-light-grey', index === props.data.details.length - 1 ? 'pb-0' : '']">
+        <div v-for="(item, index) in orderedData" :key="item.id" :class="['py-5 border border-x-transparent border-b-transparent border-t-light-grey', index === props.data.details.length - 1 ? 'pb-0' : '']">
             <span class="inline-block border border-green-600 rounded-full py-1 px-2 mb-2">{{ item.status }}</span>
 
             <div class="font-normal mb-2">
@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue';
+import { ref, defineProps, computed } from 'vue';
 
 const props = defineProps({
     data: {
@@ -40,6 +40,17 @@ const formatDate = (dateString: string): string => {
   };
   return new Intl.DateTimeFormat('en-US', options).format(date);
 };
+
+const arrayByDate = (array: any[]) => {
+    return array.sort((a, b) => {
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
+    });
+}
+
+const orderedData = computed(() => {
+  const originalData = props.data.details;
+  return arrayByDate(originalData);
+});
 
 </script>
 
