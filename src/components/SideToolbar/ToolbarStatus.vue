@@ -48,11 +48,11 @@
         </div>
     </div>
 
-    <!--  -->
+    <!-- POPUP -->
     <Popup :anchor="'detailIcon'" :show="show" :popup-class="'popup-content'">
         <div class="card p-5 w-52 font-light">
             <div class="text-sm">Total</div>
-            <div class="text-2xl mb-5">${{ props.data.details.total }}</div>
+            <div class="text-2xl mb-5"><MoneyBox :Amount="props.data.details.total" /></div>
 
             <div class="text-sm">
                 <div class="flex flex-row justify-between mb-5">
@@ -65,7 +65,7 @@
                     <div class="w-7/12">
                         <div v-for="receipt in props.data.details.receipts" class="flex flex-row justify-between">
                             <div class="w-[40px] text-teal"><a :href="receipt.link">{{ receipt.invoice }}</a></div>
-                            <div>${{ receipt.amount }}</div>
+                            <div><MoneyBox :Amount="receipt.amount" /></div>
                         </div>
                     </div>
                 </div>
@@ -81,6 +81,7 @@
 import { ref, computed, defineProps } from 'vue';
 import { Popup } from '@progress/kendo-vue-popup';
 import Icon from '../../Utility/Icon.vue';
+import MoneyBox from '../Common/MoneyBox.vue';
 
 const iconChevronDown = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>'
 
