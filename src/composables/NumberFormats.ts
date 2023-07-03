@@ -13,7 +13,7 @@ export function useNumberFormatter(locale: string) {
     options = {
       compactDisplay: "short", // "long" | "short"
       currency: currencyCode,
-      currencyDisplay: "symbol", // "code" | "symbol" | "name" | "narrowSymbol"
+      currencyDisplay: "narrowSymbol", // "code" | "symbol" | "name" | "narrowSymbol"
       currencySign: "standard", // "standard" | "accounting"
       localeMatcher: "best fit", // "lookup" | "best fit"
       notation: "standard", // "standard" | "scientific" | "engineering" | "compact"

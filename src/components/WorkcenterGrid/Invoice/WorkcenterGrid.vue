@@ -1,11 +1,11 @@
 <template>
-    <Loader v-if="loading" />
+    <Loader v-if="loading" theme="dark" />
     <div id="workcenter">
         <div class="flex flex-row items-center justify-between pb-5">
             <h2 class="text-[32px] font-light">{{ props.title }}</h2>
             <div v-if="props.toolbar" class="flex flex-row text-teal">
                 <div
-                    class="flex flex-row items-center ml-[40px] text-[16px] cursor-pointer">
+                    class="flex flex-row items-center ml-[40px] text-[16px] cursor-pointer" @click="newHandler">
                     <Icon :icon="plusIcon" class="mr-[8px]" />
                     New
                 </div>
@@ -13,13 +13,13 @@
                 <div
                     class="flex flex-row items-center ml-[40px] text-[16px] cursor-pointer">
                     <Icon :icon="filterIcon" class="mr-[8px]" />
-                    <ColumnFilterButton :invoiceColumns="invoiceColumns" />
+                    <ColumnFilterButton :columns="columns" />
                 </div>
 
                 <div
                     class="flex flex-row items-center ml-[40px] text-[16px] cursor-pointer">
                     <Icon :icon="customizeIcon" class="mr-[8px]" />
-                    <ColumnHideButton :invoiceColumns="invoiceColumns" />
+                    <ColumnHideButton :columns="columns" />
                 </div>
 
                 <div class="flex flex-row items-center ml-[40px] text-[16px] cursor-pointer"
@@ -32,7 +32,7 @@
 
         <div class="card">
             <div class="ma-2">
-                <Grid :data-items="invoiceGrid" :columns="invoiceColumns" :skip="skip" :take="take" :total="count"
+                <Grid :data-items="grid" :columns="columns" :skip="skip" :take="take" :total="count"
                     :pageable="pageableOptions" @pagechange="pageChangeHandler" :sortable="sortable" :sort="sort"
                     @sortchange="sortChangeHandler" :resizable="true" :reorderable="true" @columnreorder="columnReorder"
                     :loader="loader" class="rounded-md">
@@ -74,7 +74,7 @@
 
                     <template v-slot:actionTemplate="{ props, listeners }">
                         <td>
-                            <RowEditButton :invoiceColumns="invoiceColumns" />
+                            <RowEditButton :columns="columns" />
                         </td>
                     </template>
                 </Grid>
@@ -84,11 +84,11 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, ref, defineProps } from 'vue';
 import { Grid, GridColumnProps, GridToolbar } from '@progress/kendo-vue-grid';
-import ColumnHideButton from './Grid/ColumnHideButton.vue';
-import ColumnFilterButton from './Grid/ColumnFilterButton.vue';
-import RowEditButton from './Grid/RowEditButton.vue';
+import ColumnHideButton from '../../Grid/ColumnHideButton.vue';
+import ColumnFilterButton from '../../Grid/ColumnFilterButton.vue';
+import RowEditButton from '../../Grid/RowEditButton.vue';
 
 import { saveExcel } from '@progress/kendo-vue-excel-export';
 import { Button } from '@progress/kendo-vue-buttons';
@@ -98,13 +98,13 @@ import { slice } from 'lodash';
 // icons from heroIcons, copy svg and use in dom or as needed (https://heroicons.com/)
 
 // composables
-import { useDateFormatter } from '../composables/DateComposable';
-import { useEngage } from '../composables/engageComposable';
-import { useGridOptions } from './Grid/GridOptions';
+import { useDateFormatter } from '../../../composables/DateComposable';
+import { useEngage } from '../../../composables/engageComposable';
+import { useGridOptions } from '../../Grid/GridOptionsInvoice';
 
-import { Invoice } from '../models/data-contracts';
-import Loader from '../Utility/Loader.vue';
-import Icon from '../Utility/Icon.vue';
+import { Invoice } from '../../../models/data-contracts';
+import Loader from '../../../Utility/Loader.vue';
+import Icon from '../../../Utility/Icon.vue';
 
 const props = defineProps({
     title: {
@@ -113,8 +113,9 @@ const props = defineProps({
     toolbar: {
         type: Boolean,
         default: true
-    }
+    },
 });
+
 
 const plusIcon = '<svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M20.0457 10.5C20.0457 15.7468 15.7823 20 10.5229 20C5.26347 20 1 15.7468 1 10.5C1 5.25323 5.26347 1 10.5229 1C15.7823 1 20.0457 5.25323 20.0457 10.5Z" stroke="#008897"/><path d="M10.5418 14.818V6.18164" stroke="#008897" stroke-linecap="round"/><path d="M6.19531 10.5204H14.8525" stroke="#008897" stroke-linecap="round"/></svg>';
 const filterIcon = '<svg width="22" height="18" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.66602 2.33325H21.3327" stroke="#008897" stroke-miterlimit="10"/><path d="M0 2.33325H2.66667" stroke="#008897" stroke-miterlimit="10"/><path d="M18.666 9H21.3327" stroke="#008897" stroke-miterlimit="10"/><path d="M0 9H14.6667" stroke="#008897" stroke-miterlimit="10"/><path d="M10.666 15.6667H21.3327" stroke="#008897" stroke-miterlimit="10"/><path d="M0 15.6667H6.66667" stroke="#008897" stroke-miterlimit="10"/><path d="M4.66602 4.33325C5.77059 4.33325 6.66602 3.43782 6.66602 2.33325C6.66602 1.22868 5.77059 0.333252 4.66602 0.333252C3.56145 0.333252 2.66602 1.22868 2.66602 2.33325C2.66602 3.43782 3.56145 4.33325 4.66602 4.33325Z" stroke="#008897" stroke-miterlimit="10"/><path d="M16.666 11C17.7706 11 18.666 10.1046 18.666 9C18.666 7.89543 17.7706 7 16.666 7C15.5614 7 14.666 7.89543 14.666 9C14.666 10.1046 15.5614 11 16.666 11Z" stroke="#008897" stroke-miterlimit="10"/><path d="M8.66602 17.6667C9.77059 17.6667 10.666 16.7713 10.666 15.6667C10.666 14.5622 9.77059 13.6667 8.66602 13.6667C7.56145 13.6667 6.66602 14.5622 6.66602 15.6667C6.66602 16.7713 7.56145 17.6667 8.66602 17.6667Z" stroke="#008897" stroke-miterlimit="10"/></svg>';
@@ -128,7 +129,8 @@ const dateFormatter = useDateFormatter('en-US');
 
 const odataURl = '$count=true&$select=InvoiceID,InvoiceRef,InvoiceDate,PostingDate,CurrentStateName&$expand=Supplier($select=Name),Employee($select=FirstName,LastName)';
 
-const invoiceColumns = ref<GridColumnProps[]>([
+
+const columns = ref<GridColumnProps[]>([
     { field: 'InvoiceID', type: 'number', title: 'Invoice #', hidden: false },
 
     { field: 'InvoiceRef', type: 'string', title: 'Title', cell: 'titleTemplate', hidden: false },
@@ -138,9 +140,6 @@ const invoiceColumns = ref<GridColumnProps[]>([
     { field: 'PostingDate', type: 'date', title: 'Posted date', cell: 'dateTemplate', hidden: false },
 
     { field: 'Supplier.Name', type: 'string', title: 'Vendor', hidden: false },
-
-    // { field: 'Approvers', type: 'string', title: 'Current approver', width: '150px', hidden: false },
-    // { field: 'ApprovalGroups', type: 'string', title: 'Approval group', width: '200px', hidden: false },
 
     { field: 'Employee.FirstName', type: 'string', title: 'Financial assistant', hidden: false },
     { field: 'TotalCostDisplay', type: 'string', title: 'Total', hidden: false },
@@ -157,20 +156,24 @@ const { loader,
     sortable,
     sortChangeHandler,
     sort,
-    columnReorder } = useGridOptions(invoiceColumns);
+    columnReorder } = useGridOptions(columns);
 
 
 const { data, error, loading, count } = useEngage<Invoice>(ref(`/api/Invoices?${odataURl}`), authToken);
 
-const invoiceGrid = computed(() => {
+const grid = computed(() => {
     return slice(orderBy(data.value, sort.value), skip.value, take.value + skip.value);
 });
 const exportExcel = () => {
     saveExcel({
-        data: invoiceGrid.value,
+        data: grid.value,
         fileName: "Invoices.xlsx",
-        columns: invoiceColumns.value
+        columns: columns.value
     });
+}
+
+const newHandler = () => {
+    console.log('new invoice handler')
 }
 </script>
 

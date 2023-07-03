@@ -1,11 +1,20 @@
 <template name="loader">
-    <div class="loader">
+    <div class="loader" :class="{'bg-white bg-opacity-75': props.theme === 'light', 'bg-primary bg-opacity-75': props.theme === 'dark'}">
         <div class="donut-1"></div>
         <div class="donut-2"></div>
     </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { defineProps } from 'vue';
+
+const props = defineProps({
+    theme: {
+        type: String,
+        required: true
+    }
+});
+</script>
 
 <style scoped>
 .loader {
@@ -13,11 +22,11 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    position: absolute;
+    position: fixed;
     z-index: 100;
     top: 0;
     left: 0;
-    @apply h-full bg-primary bg-opacity-75;
+    @apply h-full;
 }
 /* DONUT */
 .donut-1 {
@@ -57,26 +66,4 @@
     transform: rotate(290deg);
   }
 }
-
-/* .loader__spinner {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.loader__spinner--bounce {
-    @apply bg-teal;
-    width: 20px;
-    height: 20px;
-    border-radius: 100%;
-    margin: 0 5px;
-    animation: loader__spinner--bounce 1s infinite alternate;
-}
-@keyframes loader__spinner--bounce {
-    0% {
-        transform: translateY(0);
-    }
-    100% {
-        transform: translateY(-20px);
-    }
-} */
 </style>

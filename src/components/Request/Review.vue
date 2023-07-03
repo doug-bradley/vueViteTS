@@ -5,7 +5,7 @@
                 <Icon :icon="iconArrowLeft" class="w-4 h-4" />
                 Back
             </div>
-            <WorkcenterGrid title="Request title" :toolbar="false" />
+            <WorkcenterGrid title="Request title" :toolbar="true" />
         </div>
 
         <div class="flex flex-col gap-3 w-3/12">
@@ -22,7 +22,7 @@
 import { ref } from 'vue';
 import Icon from '../../Utility/Icon.vue';
 import Loader from '../../Utility/Loader.vue';
-import WorkcenterGrid from '../WorkcenterGrid.vue';
+import WorkcenterGrid from '../WorkcenterGrid/Request/WorkcenterGrid.vue';
 import ToolbarActions from '../SideToolbar/ToolbarActions.vue';
 import ToolbarStatus from '../SideToolbar/ToolbarStatus.vue';
 import ToolbarDescription from '../SideToolbar/ToolbarDescription.vue';

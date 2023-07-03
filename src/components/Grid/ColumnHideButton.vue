@@ -1,7 +1,7 @@
 <template>
     <div @click="onClick">
     <DropDownButton
-        :items="invoiceColumns" 
+        :items="columns" 
         :text="'Customize'" 
         :opened="opened" 
         :item-render="'itemRender'" 
@@ -24,7 +24,7 @@ import { Checkbox } from "@progress/kendo-vue-inputs";
 import { GridColumnProps } from '@progress/kendo-vue-grid';
 
 interface IProps {
-    invoiceColumns: GridColumnProps[];
+    columns: GridColumnProps[];
 }
 
 const props = defineProps<IProps>();
@@ -40,7 +40,7 @@ const onItemClick = (e: any) => {
     const column = item.field;
     const hidden = item.hidden;
 
-    props.invoiceColumns.forEach((col: any) => {
+    props.columns.forEach((col: any) => {
         if (col.field === column) {
             col.hidden = !hidden;
         }
